@@ -26,23 +26,24 @@ import { BoardsList } from "./components/BoardsList";
 import { ImportBoardsForm } from "./components/ImportBoardsForm";
 import { NewBoardForm } from "./components/NewBoardForm";
 
-const boardsTabs = [
-  { key: "boards" as const, label: t`Active` },
-  { key: "archived" as const, label: t`Archived` },
-];
-
 export default function BoardsPage({ isTemplate }: { isTemplate?: boolean }) {
   const { openModal, modalContentType, isOpen } = useModal();
   const { workspace } = useWorkspace();
   const [activeTab, setActiveTab] = useState<"boards" | "archived">("boards");
   const { canCreateBoard } = usePermissions();
 
+  // Defined inside the component so the labels re-translate when the locale changes.
+  const boardsTabs = [
+    { key: "boards" as const, label: t`Active` },
+    { key: "archived" as const, label: t`Archived` },
+  ];
+
   const createBoardShortcut = useMemo(
     () => ({
       type: "PRESS" as const,
       stroke: { key: "C" },
       action: () => canCreateBoard && openModal("NEW_BOARD"),
-      description: t`Create new ${isTemplate ? "template" : "board"}`,
+      description: t`Create new ${isTemplate ? t`Templates` : t`Boards`}`,
       group: "ACTIONS" as const,
     }),
     [canCreateBoard, isTemplate, openModal],
@@ -54,12 +55,12 @@ export default function BoardsPage({ isTemplate }: { isTemplate?: boolean }) {
   return (
     <>
       <PageHead
-        title={t`${isTemplate ? "Templates" : "Boards"} | ${workspace.name ?? t`Workspace`}`}
+        title={t`${isTemplate ? t`Templates` : t`Boards`} | ${workspace.name ?? t`Workspace`}`}
       />
       <div className="m-auto h-full max-w-[1100px] p-8 px-5 md:px-28 md:py-12">
         <div className="relative z-10 mb-8 flex w-full items-center justify-between">
           <h1 className="font-bold tracking-tight text-neutral-900 dark:text-dark-1000 sm:text-[1.2rem]">
-            {t`${isTemplate ? "Templates" : "Boards"}`}
+            {isTemplate ? t`Templates` : t`Boards`}
           </h1>
           <div className="flex gap-2">
             {!isTemplate && (

@@ -117,7 +117,7 @@ export function NewBoardForm({ isTemplate }: { isTemplate?: boolean }) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="px-5 pt-5">
         <div className="text-neutral-9000 flex w-full items-center justify-between pb-4 dark:text-dark-1000">
-          <h2 className="text-sm font-bold">{t`New ${isTemplate ? "template" : "board"}`}</h2>
+          <h2 className="text-sm font-bold">{t`New ${isTemplate ? t`Templates` : t`Boards`}`}</h2>
           <button
             type="button"
             className="hover:bg-li ght-300 rounded p-1 focus:outline-none dark:hover:bg-dark-300"
@@ -163,7 +163,7 @@ export function NewBoardForm({ isTemplate }: { isTemplate?: boolean }) {
         )}
         <div>
           <Button type="submit" isLoading={createBoard.isPending}>
-            {t`Create ${isTemplate ? "template" : "board"}`}
+            {t`Create ${isTemplate ? t`Templates` : t`Boards`}`}
           </Button>
         </div>
       </div>

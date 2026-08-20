@@ -47,7 +47,7 @@ const VisibilityButton = ({
     onSuccess: () => {
       showPopup({
         header: t`Board visibility updated`,
-        message: t`The visibility of your board has been set to ${isPublic ? "public" : "private"}.`,
+        message: t`The visibility of your board has been set to ${isPublic ? t`Public` : t`Private`}.`,
         icon: "success",
       });
     },

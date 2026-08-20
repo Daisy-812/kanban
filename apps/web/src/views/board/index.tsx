@@ -567,7 +567,7 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
           )}
           {!boardData && !isLoading && (
             <p className="order-2 block p-0 py-0 font-bold leading-[2.3rem] tracking-tight text-neutral-900 dark:text-dark-1000 sm:text-[1.2rem] md:order-1">
-              {t`${isTemplate ? "Template" : "Board"} not found`}
+              {t`${isTemplate ? t`Template` : t`Board`} not found`}
             </p>
           )}
           <div className="order-1 mb-4 flex items-center justify-end space-x-2 md:order-2 md:mb-0">
