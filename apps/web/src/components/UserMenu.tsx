@@ -10,6 +10,7 @@ import { twMerge } from "tailwind-merge";
 import { authClient } from "@kan/auth/client";
 
 import { env } from "~/env";
+import { useLocalisation } from "~/hooks/useLocalisation";
 import { useIsMobile } from "~/hooks/useMediaQuery";
 import { useKeyboardShortcuts } from "~/providers/keyboard-shortcuts";
 import { useModal } from "~/providers/modal";
@@ -34,6 +35,7 @@ export default function UserMenu({
 }: UserMenuProps) {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
+  const { locale, setLocale } = useLocalisation();
   const { openModal } = useModal();
   const { openLegend } = useKeyboardShortcuts();
   const isMobile = useIsMobile();
@@ -170,6 +172,39 @@ export default function UserMenu({
                     )}
                   />
                   {t`Light`}
+                </button>
+              </Menu.Item>
+            </div>
+            <div className="light-border-600 border-t-[1px] p-1 dark:border-dark-600">
+              <div className="flex w-full items-center px-3 py-2 text-left text-xs">
+                <span>{t`Language`}</span>
+              </div>
+              <Menu.Item>
+                <button
+                  onClick={() => void setLocale("en")}
+                  className="flex w-full items-center rounded-[5px] px-3 py-2 text-left text-xs hover:bg-light-200 dark:hover:bg-dark-400"
+                >
+                  <span
+                    className={twMerge(
+                      locale !== "zh" ? "visible" : "invisible",
+                      "mr-4 h-[6px] w-[6px] rounded-full bg-light-900 dark:bg-dark-900",
+                    )}
+                  />
+                  English
+                </button>
+              </Menu.Item>
+              <Menu.Item>
+                <button
+                  onClick={() => void setLocale("zh")}
+                  className="flex w-full items-center rounded-[5px] px-3 py-2 text-left text-xs hover:bg-light-200 dark:hover:bg-dark-400"
+                >
+                  <span
+                    className={twMerge(
+                      locale === "zh" ? "visible" : "invisible",
+                      "mr-4 h-[6px] w-[6px] rounded-full bg-light-900 dark:bg-dark-900",
+                    )}
+                  />
+                  中文
                 </button>
               </Menu.Item>
             </div>

@@ -11,6 +11,7 @@ import Modal from "~/components/modal";
 import { PageHead } from "~/components/PageHead";
 import PatternedBackground from "~/components/PatternedBackground";
 import Popup from "~/components/Popup";
+import { LocaleToggle } from "~/components/LocaleToggle";
 import ThemeToggle from "~/components/ThemeToggle";
 import { useDragToScroll } from "~/hooks/useDragToScroll";
 import { useModal } from "~/providers/modal";
@@ -240,9 +241,12 @@ export default function PublicBoardView() {
           </div>
         </div>
         <div className="flex h-[54px] items-center justify-center">
-          <div className="absolute left-[1rem]">
+          <div className="absolute left-[1rem] flex items-center gap-2">
             <ThemeToggle />
             <CopyBoardLink />
+            <div className="w-24">
+              <LocaleToggle />
+            </div>
           </div>
 
           {IS_CLOUD && (
